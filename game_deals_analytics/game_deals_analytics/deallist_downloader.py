@@ -4,13 +4,14 @@ from utils import format_time_now_utc
 
 
 class DealListDownloader(APIDataDownloader):
-    def __init__(self, url, output_file,store_id,upper_Price,lower_Price,page_Number):
+    def __init__(self, url, output_file,store_id,upper_price,lower_price,page_number):
         self.output_file = output_file
         self.store_id = store_id
-        self.upperPrice = upper_Price
-        self.lowerPrice = lower_Price
-        self.pageNumber = page_Number
+        self.upperPrice = upper_price
+        self.lowerPrice = lower_price
+        self.pageNumber = page_number
         self.url = url
+        self.execution_datetime = format_time_now_utc()
         self.endpoint_aseembler()
         self.filename_aseembler()
         
@@ -19,18 +20,8 @@ class DealListDownloader(APIDataDownloader):
         self.enpoint = self.url+'?'+'storeID='+self.store_id+'&pageNumber='+self.pageNumber+'&sortBy=Price&'+'upperPrice='+self.upperPrice+'&lowerPrice='+self.lowerPrice
         print(f'Endpoint :{self.enpoint}')
 
-    def filename_aseembler(self):
-        self.file_name = self.output_file+'_'+format_time_now_utc()
-        print(f'Filename:{self.file_name}')
 
-    def json_digger(self,json):
-            return json
-    
-    def custom_transformation(self,data):
-            return data
-
-
-# poetry run python .\deallist_downloader.py --url https://www.cheapshark.com/api/1.0/deals --output_file ../../csv_files/game_deals/game_deals --store_id 1 --upperPrice 5 --lowerPrice 0 --pageNumber 1
+# poetry run python .\deallist_downloader.py --url https://www.cheapshark.com/api/1.0/deals --output_file ../../csv_files/game_deals/game_deals --store_id 1 --upperprice 5 --lowerprice 0 --pagenumber 1
 @click.command()
 @click.option("--url", prompt="API URL", help="URL of the API default=https://www.cheapshark.com/api/1.0/deals",default='https://www.cheapshark.com/api/1.0/deals')
 @click.option("--output_file", prompt="Output CSV", help="Output CSV file name default=game_deals",default='../../csv_files/game_deals/game_deals')

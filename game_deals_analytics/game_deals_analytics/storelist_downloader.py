@@ -7,19 +7,14 @@ class StoreListDownloader(APIDataDownloader):
     def __init__(self, url, output_file):
         self.output_file = output_file
         self.url = url
+        self.execution_datetime = format_time_now_utc()
         self.endpoint_aseembler()
         self.filename_aseembler()
 
-    def filename_aseembler(self):
-        self.file_name = self.output_file+'_'+format_time_now_utc()
-        print(f'Filename:{self.file_name}')
-
-    def json_digger(self,json):
-            return json
-    
     def custom_transformation(self,data):
-            return data
-
+        for diccionario in data:
+                 diccionario.pop("images")
+        return data
 
 #poetry run python .\storelist_downloader.py --url https://www.cheapshark.com/api/1.0/stores --output_file ../../csv_files/store_list/store_list
 @click.command()
