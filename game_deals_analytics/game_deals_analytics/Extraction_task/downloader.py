@@ -6,6 +6,7 @@ from utils import format_time_now_utc
 from datetime import timezone
 import datetime
 
+
 class APIDataDownloader:
     def __init__(self, url, output_file):
         self.url = url
@@ -13,25 +14,29 @@ class APIDataDownloader:
         self.execution_datetime = format_time_now_utc()
         self.endpoint_assembler()
         self.filename_aseembler()
-       
+
     def endpoint_aseembler(self):
         self.enpoint = self.url
 
     def filename_aseembler(self):
-        self.file_name = self.output_file+'_'+format_time_now_utc()
-        print(f'Filename:{self.file_name}')
-    
-    def json_digger(self,json):
-            return json
-    
-    def custom_transformation(self,data):
-            return data
+        self.file_name = self.output_file + "_" + format_time_now_utc()
+        print(f"Filename:{self.file_name}")
 
-    def add_execution_datetime_to_list(self,data):
-            execution_datetime = datetime.datetime.strptime(self.execution_datetime, '%Y_%m_%d_%H_%M_%S')
-            for diccionario in data:
-                 diccionario.update({'execution_datetime': execution_datetime.strftime("%Y/%m/%d %H:%M:%S")})
-            return data
+    def json_digger(self, json):
+        return json
+
+    def custom_transformation(self, data):
+        return data
+
+    def add_execution_datetime_to_list(self, data):
+        execution_datetime = datetime.datetime.strptime(
+            self.execution_datetime, "%Y_%m_%d_%H_%M_%S"
+        )
+        for diccionario in data:
+            diccionario.update(
+                {"execution_datetime": execution_datetime.strftime("%Y/%m/%d %H:%M:%S")}
+            )
+        return data
 
     def download_data(self):
         response = requests.get(self.enpoint)
@@ -55,8 +60,8 @@ class APIDataDownloader:
     def save_to_csv(self, data):
         try:
             if data:
-                with open(self.file_name+'.csv', "w", newline="") as csv_file:
-                    writer = csv.writer(csv_file,delimiter=',')
+                with open(self.file_name + ".csv", "w", newline="") as csv_file:
+                    writer = csv.writer(csv_file, delimiter=",")
                     writer.writerow(data[0].keys())
                     for item in data:
                         writer.writerow(item.values())
