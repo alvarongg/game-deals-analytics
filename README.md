@@ -15,8 +15,8 @@ After downloading the information, it will be transformed according to the busin
 * [Pandas](https://pandas.pydata.org/docs/)
 ## Deliverable Package 1
 
-    > The script should extract data in JSON and be able to read the format in a Python dictionary.
-    > The delivery involves the creation of an initial version of the table where the data will be loaded later.
+> The script should extract data in JSON and be able to read the format in a Python dictionary.
+> The delivery involves the creation of an initial version of the table where the data will be loaded later.
 
 # Data extraction
 
