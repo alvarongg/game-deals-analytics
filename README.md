@@ -34,7 +34,7 @@ poetry init
 poetry install
 ```
 
-[To know how to execute the extraction and transformation you must enter here](game_deals_analytics\README.md)
+To know how to execute the extraction and transformation you must enter here: [game_deals_analytics\README.md](https://github.com/alvarongg/game-deals-analytics/blob/main/game_deals_analytics/README.md)
 
 # Database 
 
