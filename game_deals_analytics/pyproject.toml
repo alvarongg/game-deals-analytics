@@ -10,6 +10,7 @@ packages = [{include = "game_deals_analytics"}]
 python = "^3.11"
 requests = "^2.31.0"
 click = "^8.1.3"
+pyspark = "^3.4.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.2"
