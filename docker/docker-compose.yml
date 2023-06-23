@@ -23,8 +23,8 @@ services:
       - ./docker_shared_folder:/home/coder/working_dir
     user: root
     working_dir: /home/coder/working_dir
-    # env_file:
-    #   - ./docker_shared_folder/.env
+    env_file:
+       - ./docker_shared_folder/.env/.env
     environment:
       NB_USER: coder
       NB_GID: 1000
