@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS game_deals (
 """
 
 QUERY_CLEAN_PROCESS_DATE = """
-DELETE FROM users WHERE execution_datetime = '{{ ti.xcom_pull(key="process_date") }}';
+DELETE FROM game_deals WHERE execution_datetime = '{{ ti.xcom_pull(key="process_date") }}';
 """
 
 
