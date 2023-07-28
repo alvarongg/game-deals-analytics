@@ -6,7 +6,7 @@ from os import environ as env
 import json
 
 from pyspark.sql.functions import concat, col, lit, when, expr, to_date
-from utils import format_time_now_utc
+from utils import format_time_now_utc, ambiguous_column_tagger
 
 from commons import ETL_Spark
 
@@ -75,6 +75,16 @@ class ETL_Game_Deals(ETL_Spark):
         print(">>> [T] Transformando datos...")
 
         df = self.clean_data(df_original)
+
+        # calculate discount percentage between normalPrice and salePrice
+        df = df.withColumn(
+            "discount", (1 - col("normalPrice") / col("salePrice")) * 100
+        )
+
+        # rename columns discount to savings and delete orginal savings column and discount column
+        df = df.drop("savings")
+        df = df.withColumnRenamed("discount", "savings")
+        df = df.drop("discount")
 
         return df
 
