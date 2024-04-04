@@ -1,5 +1,4 @@
-# Game-deals-analytics --  Final Project  -- Data Engineer CoderHouse 2023
-
+# Game-deals-analytics 
 Game deals analytics is a tool that allows you to download information about video game deals from different online stores.
 
 After downloading the information, it will be transformed according to the business rules and loaded into a Redshift database to be subsequently analyzed.
